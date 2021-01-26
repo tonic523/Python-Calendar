@@ -1,7 +1,4 @@
-print('\t\t< 2021 1 >')
-print('Mo\tTu\tWe\tTh\tFr\tSa\tSu')
-print('1\t2\t3\t4\t5\t6\t7')
-print('8\t9\t10\t11\t12\t13\t14')
-print('15\t16\t17\t18\t19\t20\t21')
-print('22\t23\t24\t25\t26\t27\t28')
-print('29\t30\t31\tTh\tFr\tSa\tSu')
+days_of_month = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31,
+                 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+month = input('월을 입력하세요 > ')
+print(month, '월의 최대 일수는 ', days_of_month[int(month)], '입니다')
