@@ -29,7 +29,22 @@ def get_start_day(year, month):    # 1일의 요일 받기
     return weekday
 
 
+def get_schedule(year, month):
+    schedule_list = []
+    f = open('schedule.txt', 'r')
+    while True:
+        line = f.readline()
+        if not line:
+            break
+        if year == int(line[0:4]) and month == int(line[5:7]):
+            schedule_list.append(int(line[8:10]))
+    f.close()
+    return schedule_list
+
+
 def print_calendar(year, month):    # 입력된 년,월로 달력 출력
+    schedule_list = get_schedule(year, month)
+    schedule_list.sort()
     print('\t\t< {}  {} >' .format(year, month))
     print('Mo\tTu\tWe\tTh\tFr\tSa\tSu')
     weekday = get_start_day(year, month)
@@ -37,6 +52,10 @@ def print_calendar(year, month):    # 입력된 년,월로 달력 출력
         print('\t', end='')
     cal_leap_year(year)
     for days in range(1, days_of_month[int(month)] + 1):
+        for schedule_days in schedule_list:
+            if days == schedule_days:
+                print('.', end='')
+                break
         if (days + weekday) % 7 == 0:
             print(days, '\t')
         else:
